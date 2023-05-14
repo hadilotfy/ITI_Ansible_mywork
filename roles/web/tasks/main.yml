@@ -1,0 +1,14 @@
+- name: install_webserver
+  package: 
+    name: "{{ webserver_name }}"
+    state: present
+
+- name: copy_default_webpage
+  template:
+    src: "{{ default_page_template }}"
+    dest: /var/www/html/index.html
+  notify:
+    - restart_webserver_handler  # ansible handlers will run once
+    # this handler will run at the end. because it was called more
+    # than once.
+    - copy_webpages_handler

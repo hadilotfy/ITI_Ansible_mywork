@@ -1,0 +1,12 @@
+- name: register hands on play
+  hosts: all
+  tasks:
+    - name: ping it
+      ping:
+      register: ping_result
+
+    - name: copy output to localhost
+      delegate_to: localhost
+      copy:
+        content: "{{ ping_result }}"
+        dest: "./{{ ansible_date_time.iso8601 }}_ping_result"

@@ -1,0 +1,24 @@
+- name: vars playbook
+  hosts: centos
+  vars:                             #  var or playbook level
+    play_name: vars playbook
+  tasks:
+  - name: first debug task
+    vars:                           # vars on a task leve
+      task_name: first debug task
+    debug:
+      msg: 'play name: {{ play_name  }} , task name: {{ task_name }}'
+  - name: second debug task
+    vars:
+      task_name: second debug task
+    debug:
+      msg: 'play name: {{ play_name  }} , task name: {{ task_name }}'
+  - name : third debug task
+    debug:
+      msg: 'host name: {{ host_name }}'  # vars on a host level in inventory file
+  - name : 4th debug task
+    debug:
+      msg: 'a place for host vars: {{ host_var_v2 }}'  # vars on a host level in /host_vars/$(host_name) file
+  - name : group_vars/$(some group name) variables
+    debug:
+      msg: 'group describtion: {{ group_describtion }}'

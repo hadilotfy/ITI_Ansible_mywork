@@ -1,0 +1,6 @@
+webserver_name: "httpd"
+default_page_template: index.html.j2
+welcome_msg: "Welcome to Ansible world."
+webpages:
+  - data.html
+  - farewell.html

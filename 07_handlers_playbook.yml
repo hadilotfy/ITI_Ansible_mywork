@@ -1,0 +1,48 @@
+- name: hands on handlers play
+  hosts: centos
+#  gather_facts: False
+  tasks:
+  - name: ping
+    ping:
+    notify: print_os_info_handler
+    changed_when: true
+
+  handlers:
+  - name: print_os_info_handler
+    command: cat /etc/os-release
+    register: info
+    notify: save_info_handler
+
+  - name: save_info_handler
+    delegate_to: localhost
+    copy:
+      content: "{{ info }}"
+      dest: "./{{ ansible_date_time.iso8601 }}_07_saved_info"
+
+- name: hands of handlers play v2
+  hosts: centos
+  tasks:
+  - name: task_1
+    ping:
+    notify: handler_1
+    changed_when: true
+
+  - name: task_2
+    ping:
+    notify: handler_2
+    changed_when: true
+
+  handlers:
+  - name: handler_1
+    ping:
+    notify: handler_3
+    changed_when: true
+  - name: handler_2
+    ping:
+    notify: handler_4
+    changed_when: true
+  - name: handler_3
+    ping:
+  - name: handler_4
+    ping:
+
