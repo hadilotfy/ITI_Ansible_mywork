@@ -1,0 +1,12 @@
+- name: my loop playbook
+  hosts: Redhat  # group with two hosts (rhel,centos)
+  tasks:
+  - name: handle all packaging in one task
+    package:
+      name: "{{ item.package_name }}"
+      state: '{{ item.package_state }}'
+    loop:
+      - { package_name: "curl" ,package_state: "present" }  # ensures curl is presnet(install if not)
+      - { package_name: "nginx" ,package_state: "latest" }  # install   ngingx:latest
+      - { package_name: "httpd" ,package_state: "absent" }  # uninstall apache
+

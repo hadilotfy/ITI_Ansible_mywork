@@ -1,0 +1,22 @@
+- name: copy_webpages_handler
+  copy:
+    src: "{{ item }}"
+    dest: "/var/www/html/{{ item }}"
+  loop:  "{{ webpages }}"
+  notify: restart_webserver_handler
+  notify: curl_data_handler
+
+- name: curl_data_handler
+  command: curl "127.0.0.1/data.html"
+  register: info
+  notify: print
+
+- name: print
+  debug: 
+    var: info.stdout_lines
+
+- name: restart_webserver_handler
+  sysvinit:
+#  service:
+    name: "{{ webserver_name }}"
+    state: restarted

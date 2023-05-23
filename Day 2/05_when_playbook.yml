@@ -1,0 +1,14 @@
+- name: when hands on play
+  hosts: Redhat
+  gather_facts: True
+  tasks:
+  - name: print some message
+    debug:
+      msg: "Hello from CentOS"
+    when: ansible_facts['distribution']=='CentOS'
+  - name: print other message
+    debug:
+      msg: "Hello from RHEL"
+    when: ansible_facts['distribution']=='RHEL'
+      
+    

@@ -1,0 +1,11 @@
+
+[Centos]
+centos ansible_host=127.0.0.1 ansible_port=3666 host_name=centos
+
+
+[RHEL]
+rhel   ansible_host=127.0.0.1 ansible_port=3777 host_name=rhel
+
+[Redhat:children]
+Centos
+RHEL

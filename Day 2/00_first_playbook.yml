@@ -1,0 +1,7 @@
+- name: myffirst
+  hosts: localhost
+  gather_facts: False
+  tasks:
+    - name:
+      ping:
+#    - apt: update_cache=yes

@@ -1,0 +1,16 @@
+
+
+#192.168.2.3
+[Centos]
+centos ansible_host=localhost ansible_port=3666
+#127.0.0.1 ansible_port=3666
+[Rhel]
+rhel ansible_host=localhost ansible_port=3777
+#127.0.0.1 ansible_port=3777
+[Ubuntu]
+ubuntu ansible_host=127.0.0.1 ansible_port=3888
+#127.0.0.1 ansible_port=3888
+
+[Redhat:children]
+Rhel
+Centos

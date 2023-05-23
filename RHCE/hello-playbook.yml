@@ -1,0 +1,10 @@
+- name: First Play
+  hosts: localhost
+  connection: local
+#  gather_facts: False
+  tasks:
+    - name: ping myself
+      ping:
+    - name: print os
+      debug:
+        msg: "{{ ansible_os_family }}"

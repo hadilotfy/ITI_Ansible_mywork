@@ -1,0 +1,17 @@
+- name: tags playbook
+  hosts: all
+  tasks:
+  - name: ping host task
+    ping:
+    tags: always
+  - name: sudo update task
+    tags: update
+    yum : name=sudo  state=latest   #update_cache=yes
+  - name: sudo install task
+    tags: install
+    yum : 
+      name: sudo
+      state: present
+
+
+  # ansible-playbook tags_playbook.yml --tags update

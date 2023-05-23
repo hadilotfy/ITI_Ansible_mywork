@@ -1,0 +1,6 @@
+- name: Install WebServer & Add WebPages
+# hands on roles,templates,handlers,variables
+  hosts: centos
+  gather_facts: False
+  roles:
+    - web
